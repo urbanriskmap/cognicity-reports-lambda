@@ -17,6 +17,7 @@
     "unit.js": "^2.0.0"
   },
   "dependencies": {
+    "dotenv": "^2.0.0",
     "pg": "^6.1.0"
   }
 }
