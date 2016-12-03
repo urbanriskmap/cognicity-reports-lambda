@@ -11,6 +11,9 @@ var QlueLambda = function functionQlueLambda(){
 
   this._lastContributionID;
 
+  this.pgConString='postgres://' + process.env.DB_USERNAME + ':' + process.env.DB_PASSWORD + '@' + process.env.DB_HOSTNAME + ':' +
+    process.env.DB_PORT + '/' + process.env.DB_NAME + '?ssl=' process.env.DB_SSL;
+
 }
 
 // Methods
@@ -25,7 +28,7 @@ QlueLambda.prototype = {
       values: [city]
     }
 
-    self.db.query(queryObject, function(err, data){
+    self.db.query(self.pgConString, queryObject, function(err, data){
       console.log(err, data);
       if (err !== null){console.log('Error getting last contribution ID from database: ', err)}
       if (data && data[0]){
@@ -54,10 +57,10 @@ QlueLambda.prototype = {
 				// We've seen this result before, stop processing
 				console.log( "QlueDataSource > poll > processResults: Found already processed result with contribution ID " + result.id );
 				break;
-			} else if ( Date.parse(result.post_date+'+0700') < new Date().getTime() - process.env.LOAD_PERIOD ) {
+			} else if ( Date.parse(result.post_date+'+0700') < new Date().getTime() - Number(process.env.LOAD_PERIOD)) {
 				// This result is older than our cutoff, stop processing
 				// TODO What date to use? transform to readable. timezone
-				console.log( "QlueDataSource > poll > processResults: Result " + result.id + " older than maximum configured age of " + self.config.qlue.historicalLoadPeriod / 1000 + " seconds" );
+				console.log( "QlueDataSource > poll > processResults: Result " + result.id + " older than maximum configured age of " + Number(process.env.LOAD_PERIOD) / 1000 + " seconds" );
 				break;
 			} else {
 				// Process this result
