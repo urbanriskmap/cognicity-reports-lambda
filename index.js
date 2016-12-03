@@ -15,5 +15,4 @@ exports.handler = function(event, context){
       console.log(cities[i]+': ', err, message, 'remaining time',context.getRemainingTimeInMillis());
     });
   }
-  context.done();
 }
