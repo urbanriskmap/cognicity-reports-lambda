@@ -24,8 +24,11 @@ coverage
 # node-waf configuration
 .lock-wscript
 
-# Compiled binary addons (http://nodejs.org/api/addons.html)
-build/Release
+# Compiled binary addons (http://nodejs.org/api/addons.html) and lambda build products
+build/
+
+# lambda .zip file
+cognicity-lambda-qlue.zip
 
 # Dependency directories
 node_modules
