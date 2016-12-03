@@ -142,7 +142,7 @@ QlueLambda.prototype = {
 
     self._getLastContributionIDByCity(city);
 
-    self.done = callback
+    self.done = callback;
 
     self._fetchResults(city);
 
