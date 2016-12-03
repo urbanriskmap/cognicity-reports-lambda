@@ -12,8 +12,7 @@ exports.handler = function(event, context){
 
   for (var i=0; i<cities.length; i++){
     qlue.poll(cities[i], function(err, message){
-      console.log(cities[i]+': ', err, message);
-      console.log(context.getRemainingTimeInMillis());
+      console.log(cities[i]+': ', err, message, 'remaining time',context.getRemainingTimeInMillis());
     });
   }
   context.done();
