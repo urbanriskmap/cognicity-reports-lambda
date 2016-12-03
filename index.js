@@ -3,7 +3,7 @@
 
 require('dotenv').config() // Config
 
-var cities = process.env.CITIES.split(",")
+var cities = process.env.CITIES.split(",");
 var QlueLambda = require('./QlueLambda');
 
 var qlue = new QlueLambda();

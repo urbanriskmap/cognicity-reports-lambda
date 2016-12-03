@@ -12,7 +12,7 @@ var QlueLambda = function functionQlueLambda(){
   this._lastContributionID;
 
   this.pgConString='postgres://' + process.env.DB_USERNAME + ':' + process.env.DB_PASSWORD + '@' + process.env.DB_HOSTNAME + ':' +
-    process.env.DB_PORT + '/' + process.env.DB_NAME + '?ssl=' process.env.DB_SSL;
+    process.env.DB_PORT + '/' + process.env.DB_NAME + '?ssl=' + process.env.DB_SSL;
 
 }
 
