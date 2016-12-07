@@ -146,14 +146,14 @@ QlueLambda.prototype = {
 
         console.log("QlueDataSource > poll > fetchResults: fetched data, " + response.length + " bytes");
 
-      if ( !responseObject || responseObject.length === 0 ) {
-        // If page has a problem or 0 objects, end
-        console.log( "QlueDataSource > poll > fetchResults: No results found ");
-        return;
-      } else {
-        // Run data processing callback on the result objects
-        self._filterResults( city, responseObject.data );
-      }
+        if ( !responseObject || responseObject.data.length === 0 ) {
+          // If page has a problem or 0 objects, end
+          console.log( "QlueDataSource > poll > fetchResults: No results found ");
+          return;
+        } else {
+          // Run data processing callback on the result objects
+          self._filterResults( city, responseObject.data );
+        }
       });
     });
 
