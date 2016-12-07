@@ -63,7 +63,6 @@ QlueLambda.prototype = {
         // Finally check for NullIsland
         if (report.location.lng !== 0 && report.location.lat !== 0){
           console.log( "QlueDataSource > poll > processResults: Processing result " + result.id );
-          console.log(report)
           self._saveResult( city, report );
         }
 			}
@@ -96,8 +95,6 @@ QlueLambda.prototype = {
          }
        };
 
-       console.log(options);
-
        var req = self.https.request(options, function (res) {
          var chunks = [];
 
@@ -107,7 +104,6 @@ QlueLambda.prototype = {
 
          res.on("end", function () {
            var body = Buffer.concat(chunks);
-           console.log(body.toString());
          });
        });
 
