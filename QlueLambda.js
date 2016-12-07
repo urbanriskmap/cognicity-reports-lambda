@@ -4,7 +4,8 @@
 var QlueLambda = function functionQlueLambda(){
 
   require('dotenv').config() // Config
-  this.http = require('https');
+  this.http = require('http');
+  this.https = require('https');
 
 }
 
@@ -27,9 +28,44 @@ QlueLambda.prototype = {
 				console.log( "QlueDataSource > poll > processResults: Result " + result.id + " older than maximum configured age of " + Number(process.env.LOAD_PERIOD) / 1000 + " seconds" );
 				break;
 			} else {
-				// Process this result
-				console.log( "QlueDataSource > poll > processResults: Processing result " + result.id );
-				self._saveResult( city, result );
+        // Process this result
+        var report = {};
+        // Assign post_id
+        report.post_id = result.id;
+        // Fix timestamp
+        report.created_at = new Date(result.timestamp).toISOString();
+        // Get text
+        if (result.description === undefined){
+          report.text = '';
+        }
+        else {
+          report.text = result.description;
+        }
+        // Get title
+        if (result.title === undefined){
+          report.title = '';
+        }
+        else {
+          report.title = result.title;
+        }
+        // Check for photo URL and fix escaping slashes
+        report.image_url = null;
+        if (result.file && result.file.format === "image") {
+          report.image_url = result.file.url.replace("'\'","").replace('http://','https://');
+        }
+        // Set location (remove other Qlue metadata)
+        report.location = {};
+        report.location.lat = result.location.lat;
+        report.location.lng = result.location.lng;
+        // Add reports type
+        report.disaster_type = process.env.DISASTER_TYPE;
+
+        // Finally check for NullIsland
+        if (report.location.lng !== 0 && report.location.lat !== 0){
+          console.log( "QlueDataSource > poll > processResults: Processing result " + result.id );
+          console.log(report)
+          self._saveResult( city, report );
+        }
 			}
 			result = results.shift();
 		}
@@ -50,16 +86,19 @@ QlueLambda.prototype = {
        result.qlue_city = city;
 
        var options = {
-         "method": "GET",
+         "method": "POST",
          "hostname": "data.petabencana.id",
          "port": null,
          "path": "/feeds/qlue",
          "headers": {
-           "x-api-key":process.env.AWS_API_KEY
+           "x-api-key":process.env.AWS_API_KEY,
+           "content-type":"application/json"
          }
        };
 
-       var req = http.request(options, function (res) {
+       console.log(options);
+
+       var req = self.https.request(options, function (res) {
          var chunks = [];
 
          res.on("data", function (chunk) {
@@ -74,7 +113,6 @@ QlueLambda.prototype = {
 
        req.write(JSON.stringify(result));
        req.end();
-
 
      }
   },
