@@ -4,42 +4,12 @@
 var QlueLambda = function functionQlueLambda(){
 
   require('dotenv').config() // Config
-  this.http = require('http');
-
-  this.db = require('./lib/db.js');
-  this.insert = require('./lib/insert.js');
-
-  this._lastContributionID;
-
-  this.pgConString='postgres://' + process.env.DB_USERNAME + ':' + process.env.DB_PASSWORD + '@' + process.env.DB_HOSTNAME + ':' +
-    process.env.DB_PORT + '/' + process.env.DB_NAME + '?ssl=' + process.env.DB_SSL;
+  this.http = require('https');
 
 }
 
 // Methods
 QlueLambda.prototype = {
-
-  _getLastContributionIDByCity:function(city){
-
-    var self = this;
-
-    var queryObject = {
-      text: "SELECT post_id FROM qlue.reports WHERE qlue_city = $1 ORDER BY post_id DESC LIMIT 1;",
-      values: [city]
-    }
-
-    self.db.query(self.pgConString, queryObject, function(err, data){
-      console.log(err, data);
-      if (err !== null){console.log('Error getting last contribution ID from database: ', err)}
-      if (data && data[0]){
-        self._lastContributionId = data[0].post_id;
-      }
-
-      else {
-        console.log('Error getting last contribution ID from database, is reports table empty?');
-      }
-    });
-  },
 
   /**
 	 * Process the passed result objects.
@@ -48,16 +18,10 @@ QlueLambda.prototype = {
 	 */
 	_filterResults: function( city, results ) {
 		var self = this;
-    results.reverse(); // Organise array in ascending order
 		// For each result:
 		var result = results.shift();
 		while( result ) {
-      console.log('last', self._lastContributionId)
-			if ( result.id <= self._lastContributionId ) {
-				// We've seen this result before, stop processing
-				console.log( "QlueDataSource > poll > processResults: Found already processed result with contribution ID " + result.id );
-				break;
-			} else if ( Date.parse(result.post_date+'+0700') < new Date().getTime() - Number(process.env.LOAD_PERIOD)) {
+      if ( Date.parse(result.post_date+'+0700') < new Date().getTime() - Number(process.env.LOAD_PERIOD)) {
 				// This result is older than our cutoff, stop processing
 				// TODO What date to use? transform to readable. timezone
 				console.log( "QlueDataSource > poll > processResults: Result " + result.id + " older than maximum configured age of " + Number(process.env.LOAD_PERIOD) / 1000 + " seconds" );
@@ -65,12 +29,10 @@ QlueLambda.prototype = {
 			} else {
 				// Process this result
 				console.log( "QlueDataSource > poll > processResults: Processing result " + result.id );
-				self._lastContributionId = result.id;
 				self._saveResult( city, result );
 			}
 			result = results.shift();
 		}
-    self.done(null, 'done');
 
 	},
 
@@ -83,7 +45,37 @@ QlueLambda.prototype = {
 
      // Don't allow users from the Gulf of Guinea (indicates no geo available)
      if (result.location.lng !== 0 && result.location.lat !== 0){
-       self.insert.report(city, result);
+       //self.insert.report(city, result);
+
+       result.qlue_city = city;
+
+       var options = {
+         "method": "GET",
+         "hostname": "data.petabencana.id",
+         "port": null,
+         "path": "/feeds/qlue",
+         "headers": {
+           "x-api-key":process.env.AWS_API_KEY
+         }
+       };
+
+       var req = http.request(options, function (res) {
+         var chunks = [];
+
+         res.on("data", function (chunk) {
+           chunks.push(chunk);
+         });
+
+         res.on("end", function () {
+           var body = Buffer.concat(chunks);
+           console.log(body.toString());
+         });
+       });
+
+       req.write(JSON.stringify(result));
+       req.end();
+
+
      }
   },
 
@@ -137,12 +129,6 @@ QlueLambda.prototype = {
   poll: function(city, callback){
 
     var self = this;
-
-    self._lastContributionId = null;
-
-    self._getLastContributionIDByCity(city);
-
-    self.done = callback;
 
     self._fetchResults(city);
 
