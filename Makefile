@@ -7,6 +7,5 @@ lambda:
 	@cp sample.env build/.env
 	@if [ -d build/node_modules ] ;then rm -rf build/node_modules; fi
 	@cp -R node_modules build/node_modules
-	@cp -R lib build/
 	@echo "Create package archive..."
 	@cd build && zip -rq -9 ../cognicity-lambda-qlue.zip .
