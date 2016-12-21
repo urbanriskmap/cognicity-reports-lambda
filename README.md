@@ -1,5 +1,5 @@
-cognicity-reports-lambda/qlue
-=============================
+cognicity-reports-lambda
+========================
 Data connectors for CogniCity using AWS Lambda functions
 
 ## Current connectors
