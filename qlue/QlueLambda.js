@@ -22,7 +22,7 @@ QlueLambda.prototype = {
 		// For each result:
 		var result = results.shift();
 		while( result ) {
-      if ( Date.parse(result.post_date+'+0700') < new Date().getTime() - Number(process.env.LOAD_PERIOD)) {
+      if ( Date.parse(result.timestamp+'+0700') < new Date().getTime() - Number(process.env.LOAD_PERIOD)) {
 				// This result is older than our cutoff, stop processing
 				// TODO What date to use? transform to readable. timezone
 				console.log( "QlueDataSource > poll > processResults: Result " + result.id + " older than maximum configured age of " + Number(process.env.LOAD_PERIOD) / 1000 + " seconds" );
@@ -33,7 +33,7 @@ QlueLambda.prototype = {
         // Assign post_id
         report.post_id = result.id;
         // Fix timestamp
-        report.created_at = new Date(result.timestamp).toISOString();
+        report.created_at = new Date(result.timestamp+'0700').toISOString();
         // Get text
         if (result.description === undefined){
           report.text = '';
