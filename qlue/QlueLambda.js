@@ -33,7 +33,7 @@ QlueLambda.prototype = {
         // Assign post_id
         report.post_id = result.id;
         // Fix timestamp
-        report.created_at = new Date(result.timestamp+'0700').toISOString();
+        report.created_at = new Date(result.timestamp+'+0700').toISOString();
         // Get text
         if (result.description === undefined){
           report.text = '';
