@@ -86,7 +86,7 @@ QlueLambda.prototype = {
 
        var options = {
          "method": "POST",
-         "hostname": "data.petabencana.id",
+         "hostname": process.env.DATA_API,
          "port": null,
          "path": "/feeds/qlue",
          "headers": {
