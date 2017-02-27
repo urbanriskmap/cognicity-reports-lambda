@@ -1,0 +1,22 @@
+{
+  "name": "cognicity-lambda-qlue",
+  "version": "0.0.1",
+  "description": "Lambda function to get Qlue reports and push to Cognicity",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "keywords": [
+    "CogniCity",
+    "Zurich"
+  ],
+  "author": "Matthew Berryman",
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "mocha": "^3.2.0",
+    "unit.js": "^2.0.0"
+  },
+  "dependencies": {
+    "request": "^2.79.0"
+  }
+}
