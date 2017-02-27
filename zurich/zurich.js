@@ -11,6 +11,7 @@ exports.handler = function(event, context, callback) {
 
       for (var i = 0; i < results.features; i++) {
         var body = results.features[i].properties;
+        body.post_id = results.features.properties.pkey;
 
         // Do we want to have a city, if so do we trust
         // results.features[i].properties.text
