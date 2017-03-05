@@ -5,7 +5,7 @@ var request=require('request');
 exports.handler = function(event, context, callback) {
   console.log("\n\nLoading handler\n\n");
 
-  request(process.env.ZURICH_URL, function (error, response, body) {
+  request(process.env.ZURICH_API, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       var results = JSON.parse(body);
 
@@ -41,7 +41,7 @@ exports.handler = function(event, context, callback) {
         }
       }
       var options = {
-        url: 'https://'+process.env.BASE_URL+'/feeds/zurich',
+        url: 'https://'+process.env.DATA_API+'/feeds/zurich',
         method: 'POST',
         headers: {
           "X-API-KEY": process.env.AWS_API_KEY,

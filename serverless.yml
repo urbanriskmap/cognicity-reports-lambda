@@ -1,9 +1,27 @@
+provider:
+  name: aws
+  runtime: nodejs4.3
+# you can overwrite defaults here
+  stage: dev
+  region: ap-southeast-1
+
 functions:
   zurich:
     handler: zurich.handler
     events:
-      - schedule: rate(15 minutes)
+      - schedule: rate(5 minutes)
+    environment:
+      DATA_API: data-dev.petabencana.id
+      AWS_API_KEY: ${file(private.yml):AWS_API_KEY}
+      ZURICH_API: ${file(private.yml):ZURICH_API}
   qlue:
     handler: qlue.handler
     events:
-      - schedule: rate(15 minutes)
+      - schedule: rate(5 minutes)
+    environment:
+      CITIES: jabodetabek.bandung.surabaya
+      LOAD_PERIOD: 3600000
+      DISASTER_TYPE: flood
+      DATA_API: data-dev.petabencana.id
+      QLUE_API: ${file(private.yml):QLUE_API}
+      AWS_API_KEY: ${file(private.yml):AWS_API_KEY}

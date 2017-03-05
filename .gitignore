@@ -49,5 +49,5 @@ jspm_packages
 # Yarn Integrity file
 .yarn-integrity
 
-# dotenv
-.env
+# private yml file
+private.yml
