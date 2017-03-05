@@ -1,0 +1,9 @@
+functions:
+  zurich:
+    handler: zurich.handler
+    events:
+      - schedule: rate(15 minutes)
+  qlue:
+    handler: qlue.handler
+    events:
+      - schedule: rate(15 minutes)
