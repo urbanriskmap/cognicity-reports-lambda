@@ -51,3 +51,6 @@ jspm_packages
 
 # dotenv
 .env
+
+# Serverless directories
+.serverless

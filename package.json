@@ -1,0 +1,24 @@
+{
+  "name": "cognicity-reports-lambda",
+  "version": "1.0.0",
+  "description": "A serverless messenger chatbot which will send one time card links and report notifications via Facebook, Twitter and Telegram",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/urbanriskmap/cognicity-reports-lambda.git"
+  },
+  "author": "Maanasa Priyaa",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/urbanriskmap/cognicity-reports-lambda/issues"
+  },
+  "dependencies": {
+    "dotenv": "^4.0.0",
+    "request": "^2.80.0",
+    "telegraf": "^3.6.4",
+    "twitter": "^1.7.0"
+  }
+}
