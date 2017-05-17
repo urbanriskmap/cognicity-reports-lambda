@@ -13,18 +13,18 @@
 `npm install`
 
 ### For Facebook Messenger Bot
-* Create Facebook app and page and get `PAGEACCESSTOKEN` as explained [here](https://developers.facebook.com/docs/messenger-platform/guides/setup). Hold off on completing Step 2 (Set up webhooks) in the guide.
+* Create Facebook app and page and get `facebookpageaccesstoken` as explained [here](https://developers.facebook.com/docs/messenger-platform/guides/setup). Hold off on completing Step 2 (Set up webhooks) in the guide.
 * Add code for webhooks and add it to the functions in serverless.yml file as explained [here](https://serverless.com/blog/building-a-facebook-messenger-chatbot-with-serverless/)
 * Add the lambda function to listen to relevant SNS topics and add it to the functions in serverless.yml file
-* Set up the config files as explained in the `Configuration` section. `VALIDATIONTOKEN` can be set to any arbitrary string.
+* Set up the config files as explained in the `Configuration` section. `facebookvalidationtoken` can be set to any arbitrary string.
 * Now, deploy your serverless lambdas as mentioned in the `Run` section
-* On successful deployment, you'll get a secure URL for the webhook's GET method. Now complete Step 2 in the [Quick Start Guide](https://developers.facebook.com/docs/messenger-platform/guides/setup). Set this secure URL as 'Callback URL' and `VALIDATIONTOKEN` in the 'Verify Token' fields. Select 'messages' and 'messaging_postbacks' to enable two-way communication. Verifying and saving this enables the webhooks for the app.
+* On successful deployment, you'll get a secure URL for the webhook's GET method. Now complete Step 2 in the [Quick Start Guide](https://developers.facebook.com/docs/messenger-platform/guides/setup). Set this secure URL as 'Callback URL' and `facebookvalidationtoken` in the 'Verify Token' fields. Select 'messages' and 'messaging_postbacks' to enable two-way communication. Verifying and saving this enables the webhooks for the app.
 * Subscribe your app to your page as explained [here](https://developers.facebook.com/docs/messenger-platform/guides/setup#subscribe_app)
 * Send a text to your Facebook messenger bot to test if it is up and running!
 * Read `Misc Notes` section to assist in configuration
 
 ### For Telegram Bot
-* Create Telegram bot as explained [here](https://core.telegram.org/bots#creating-a-new-bot) and get `BOT_TOKEN` [here](https://core.telegram.org/bots#generating-an-authorization-token). Configure its About, Description, Commands, Profile picture but hold off on setting up Webhooks until you have configured the webhook.
+* Create Telegram bot as explained [here](https://core.telegram.org/bots#creating-a-new-bot) and get `telegrambottoken` [here](https://core.telegram.org/bots#generating-an-authorization-token). Configure its About, Description, Commands, Profile picture but hold off on setting up Webhooks until you have configured the webhook.
 * Add code for webhooks in handler.js and add it to the functions in serverless.yml file as explained [here](https://medium.com/zingle/creating-a-server-less-telegram-bot-with-aws-lambda-and-aws-api-gateway-36406471b2ca)
 * Add the lambda function to listen to relevant SNS topics and add it to the functions in serverless.yml file
 * Set up the config files as explained in the `Configuration` section.
