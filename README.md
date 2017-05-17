@@ -42,22 +42,20 @@
 `serverless deploy`
 
 ### Configuration
-Save a copy of sample.env as .env in local directory with appropriate credentials
+Save a copy of sample_env.yml as env.yml in local directory with appropriate credentials
 
-* `BOT_TOKEN`: Access token created on creating a Telegram bot
-* `VALIDATIONTOKEN`: Give the same token on Facebook dev portal to validate webhooks
-* `PAGEACCESSTOKEN`: Access token for the page to which the app has subscribed
-* `TWITTER_CONSUMER_KEY`: Taken from twitter dev admin interface after creating an app
-* `TWITTER_CONSUMER_SECRET`: Taken from twitter dev admin interface after creating an app
-* `TWITTER_ACCESS_TOKEN_KEY`: Taken from twitter dev admin interface after creating an app
-* `TWITTER_ACCESS_TOKEN_SECRET`: Taken from twitter dev admin interface after creating an app
-* `DEFAULT_LANG`: Current default language is English. You can add more languages here and parameterize replies for each language.
-* `CARD_PATH`: Front end's cards URL
-* `MAPSERVER`: Front end's map URL
-* `X_API_KEY`: API Key needed to make calls to the deployed server (Set it to "" during local testing)
-* `PG_CON`: Connection string for the Postgres database
-* `SERVER`: Cognicity server URL to fetch unique cardIds
-* `BOTNAME`: Bot/Platform name to be sent in the Greeting text.
+* `telegrambottoken`: Access token created on creating a Telegram bot
+* `facebookvalidationtoken`: Give the same token on Facebook dev portal to validate webhooks
+* `facebookpageaccesstoken`: Access token for the page to which the app has subscribed
+* `twitterconsumerkey`: Taken from twitter dev admin interface after creating an app
+* `twitterconsumersecret`: Taken from twitter dev admin interface after creating an app
+* `twitteraccesstokenkey`: Taken from twitter dev admin interface after creating an app
+* `twitteraccesstokensecret`: Taken from twitter dev admin interface after creating an app
+* `defaultlang`: Current default language is English. You can add more languages here and parameterize replies for each language.
+* `frontendcardpath`: Front end's cards URL
+* `frontendmappath`: Front end's map URL
+* `serverapikey`: API Key needed to make calls to the deployed server (Set it to "" during local testing)
+* `serverpath`: Cognicity server URL to fetch unique cardIds
 
 #### Misc Notes
 - AWS credentials are stored in bash_profile
