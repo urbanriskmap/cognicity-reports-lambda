@@ -55,7 +55,7 @@ function getInitialMessageText(language, cardId, disasterType) {
  * Construct the confirmation message to be sent to the user
  */
 function getConfirmationMessageText(language, implementationArea, reportId) {
-  return confirmations[language] + "\n" + process.env.FRONTEND_MAP_PATH + instance_regions[implementationArea] + '/' + reportId;
+  return confirmations[language] + "\n" + process.env.FRONTEND_MAP_PATH + "/" + instance_regions[implementationArea] + '/' + reportId;
 }
 
 /*
