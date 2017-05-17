@@ -1,5 +1,24 @@
 service: riskmapbot
 
+custom:
+  projectName: riskmapbot
+  dotenv:
+    FACEBOOK_VALIDATION_TOKEN: ${file(./env.yml):facebookvalidationtoken}
+    FACEBOOK_PAGE_ACCESS_TOKEN: ${file(./env.yml):facebookpageaccesstoken}
+    TELEGRAM_BOTTOKEN: ${file(./env.yml):telegrambottoken}
+    TWITTER_CONSUMER_KEY: ${file(./env.yml):twitterconsumerkey}
+    TWITTER_CONSUMER_SECRET: ${file(./env.yml):twitterconsumersecret}
+    TWITTER_ACCESS_TOKEN_KEY: ${file(./env.yml):twitteraccesstokenkey}
+    TWITTER_ACCESS_TOKEN_SECRET: ${file(./env.yml):twitteraccesstokensecret}
+    DEFAULT_LANG: ${file(./env.yml):defaultlang}
+    FRONTEND_CARD_PATH: ${file(./env.yml):frontendcardpath}
+    FRONTEND_MAP_PATH: ${file(./env.yml):frontendmappath}
+    SERVER_API_KEY: ${file(./env.yml):serverapikey}
+    SERVER_PATH: ${file(./env.yml):serverpath}
+
+plugins:
+   - serverless-plugin-dotenv
+
 provider:
   name: aws
   runtime: nodejs6.10

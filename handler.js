@@ -1,9 +1,7 @@
 'use strict';
 
 const request = require('request');
-require('dotenv').config({
-  silent: true
-});
+require('dotenv').config();
 
 // Twitter Client to send reply tweets
 var Twitter = require('twitter');
@@ -16,12 +14,12 @@ var twitterClient = new Twitter({
 
 // GRASP card
 const options = {
-  host: process.env.SERVER,
+  host: process.env.SERVER_PATH,
   path: '/cards',
   method: 'POST',
   port: 80,
   headers: {
-    'x-api-key': process.env.X_API_KEY,
+    'x-api-key': process.env.SERVER_API_KEY,
     'Content-Type': 'application/json'
   }
 }
@@ -50,14 +48,14 @@ const confirmations = {
  * Construct the initial message to be sent to the user
  */
 function getInitialMessageText(language, cardId, disasterType) {
-  return replies[language] + "\n" + process.env.CARD_PATH + "/" + disasterType + "/" + cardId + "/report";
+  return replies[language] + "\n" + process.env.FRONTEND_CARD_PATH + "/" + disasterType + "/" + cardId + "/report";
 }
 
 /*
  * Construct the confirmation message to be sent to the user
  */
 function getConfirmationMessageText(language, implementationArea, reportId) {
-  return confirmations[language] + "\n" + process.env.MAPSERVER + instance_regions[implementationArea] + '/' + reportId;
+  return confirmations[language] + "\n" + process.env.FRONTEND_MAP_PATH + instance_regions[implementationArea] + '/' + reportId;
 }
 
 /*
@@ -97,7 +95,7 @@ function sendFacebookMessage(messageData) {
   request({
     uri: 'https://graph.facebook.com/v2.6/me/messages',
     qs: {
-      access_token: process.env.PAGEACCESSTOKEN
+      access_token: process.env.FACEBOOK_PAGE_ACCESS_TOKEN
     },
     method: 'POST',
     json: messageData
@@ -127,7 +125,7 @@ function sendFacebookMessage(messageData) {
  */
 function sendTelegramMessage(messageData, senderID) {
   request({
-    uri: 'https://api.telegram.org/bot' + process.env.BOT_TOKEN + '/sendmessage?text=' + messageData + '&chat_id=' + senderID,
+    uri: 'https://api.telegram.org/bot' + process.env.TELEGRAM_BOTTOKEN + '/sendmessage?text=' + messageData + '&chat_id=' + senderID,
     method: 'POST'
   }, function (error, response, body) {
     if (!error && response.statusCode == 200) {
@@ -164,10 +162,10 @@ function sendTweet(messageText, userName) {
 
 // Webhook handler - This is the method called by Facebook when you verify webhooks for the app
 module.exports.facebookWebhook = (event, context, callback) => {
-  console.log(JSON.stringify(event.body));
+  console.log(JSON.stringify(event));
   if (event.method === 'GET') {
     // Facebook app verification
-    if (event.query['hub.verify_token'] === process.env.VALIDATIONTOKEN && event.query['hub.challenge']) {
+    if (event.query['hub.verify_token'] === process.env.FACEBOOK_VALIDATION_TOKEN && event.query['hub.challenge']) {
       return callback(null, parseInt(event.query['hub.challenge']));
     } else {
       return callback('Invalid token');

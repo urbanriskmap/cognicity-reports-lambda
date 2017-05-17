@@ -13,7 +13,7 @@
 `npm install`
 
 ### For Facebook Messenger Bot
-* Create Facebook app and page and get `APPSECRET` and `PAGEACCESSTOKEN` as explained [here](https://developers.facebook.com/docs/messenger-platform/guides/setup). Hold off on completing Step 2 (Set up webhooks) in the guide.
+* Create Facebook app and page and get `PAGEACCESSTOKEN` as explained [here](https://developers.facebook.com/docs/messenger-platform/guides/setup). Hold off on completing Step 2 (Set up webhooks) in the guide.
 * Add code for webhooks and add it to the functions in serverless.yml file as explained [here](https://serverless.com/blog/building-a-facebook-messenger-chatbot-with-serverless/)
 * Add the lambda function to listen to relevant SNS topics and add it to the functions in serverless.yml file
 * Set up the config files as explained in the `Configuration` section. `VALIDATIONTOKEN` can be set to any arbitrary string.
@@ -46,7 +46,6 @@ Save a copy of sample.env as .env in local directory with appropriate credential
 
 * `BOT_TOKEN`: Access token created on creating a Telegram bot
 * `VALIDATIONTOKEN`: Give the same token on Facebook dev portal to validate webhooks
-* `APPSECRET`: AppSecret key got on creating facebook app
 * `PAGEACCESSTOKEN`: Access token for the page to which the app has subscribed
 * `TWITTER_CONSUMER_KEY`: Taken from twitter dev admin interface after creating an app
 * `TWITTER_CONSUMER_SECRET`: Taken from twitter dev admin interface after creating an app

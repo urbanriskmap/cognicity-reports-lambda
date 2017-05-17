@@ -54,3 +54,6 @@ jspm_packages
 
 # Serverless directories
 .serverless
+
+# Custom YML files for env variables
+env.yml
