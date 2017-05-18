@@ -19,7 +19,6 @@
     "dotenv": "^4.0.0",
     "npm": "^4.6.1",
     "request": "^2.80.0",
-    "serverless-plugin-dotenv": "^1.0.0",
     "twitter": "^1.7.0"
   }
 }
