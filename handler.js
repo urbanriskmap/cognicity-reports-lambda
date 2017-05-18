@@ -280,7 +280,7 @@ module.exports.telegramWebhook = (event, context, callback) => {
   console.log("was event");
   console.log(context);
   console.log("was context");
-  if (event.body.message && event.body.message.text && (event.body.message.text === "/flood" || event.message.text === "/prep")) {
+  if (event.body.message && event.body.message.text && (event.body.message.text === "/flood" || event.body.message.text === "/prep")) {
     // Form JSON request body
     var chatID = event.body.message.chat.id;
     console.log('Received flood report request via Telegram from: ' + chatID);
