@@ -2,28 +2,14 @@ service: riskmapbot
 
 custom:
   projectName: riskmapbot
-  dotenv:
-    FACEBOOK_VALIDATION_TOKEN: ${file(./env.yml):facebookvalidationtoken}
-    FACEBOOK_PAGE_ACCESS_TOKEN: ${file(./env.yml):facebookpageaccesstoken}
-    TELEGRAM_BOTTOKEN: ${file(./env.yml):telegrambottoken}
-    TWITTER_CONSUMER_KEY: ${file(./env.yml):twitterconsumerkey}
-    TWITTER_CONSUMER_SECRET: ${file(./env.yml):twitterconsumersecret}
-    TWITTER_ACCESS_TOKEN_KEY: ${file(./env.yml):twitteraccesstokenkey}
-    TWITTER_ACCESS_TOKEN_SECRET: ${file(./env.yml):twitteraccesstokensecret}
-    DEFAULT_LANG: ${file(./env.yml):defaultlang}
-    FRONTEND_CARD_PATH: ${file(./env.yml):frontendcardpath}
-    FRONTEND_MAP_PATH: ${file(./env.yml):frontendmappath}
-    SERVER_API_KEY: ${file(./env.yml):serverapikey}
-    SERVER_PATH: ${file(./env.yml):serverpath}
-
-plugins:
-   - serverless-plugin-dotenv
 
 provider:
   name: aws
   runtime: nodejs6.10
   stage: dev
-  region: us-east-1
+  region: ap-south-1
+  stackTags:
+    area: ${file(./env.yml):area}
 
 # You can overwrite defaults by adding the following
 #  stage: dev
@@ -33,6 +19,14 @@ provider:
 functions:
   facebookWebhook: # Lambda that gets triggered when user starts a conversation with Facebook Messenger bot
     handler: handler.facebookWebhook
+    environment:
+      FACEBOOK_VALIDATION_TOKEN: ${file(./env.yml):facebookvalidationtoken}
+      FACEBOOK_PAGE_ACCESS_TOKEN: ${file(./env.yml):facebookpageaccesstoken}
+      DEFAULT_LANG: ${file(./env.yml):defaultlang}
+      FRONTEND_CARD_PATH: ${file(./env.yml):frontendcardpath}
+      FRONTEND_MAP_PATH: ${file(./env.yml):frontendmappath}
+      SERVER_API_KEY: ${file(./env.yml):serverapikey}
+      SERVER_PATH: ${file(./env.yml):serverpath}
     events:
       - http:
           path: facebook/webhook
@@ -44,10 +38,25 @@ functions:
           integration: lambda
   facebookReply: # Lambda that gets triggered when a message is published to the SNS topic Facebook
     handler: handler.facebookReply
+    environment:
+      FACEBOOK_VALIDATION_TOKEN: ${file(./env.yml):facebookvalidationtoken}
+      FACEBOOK_PAGE_ACCESS_TOKEN: ${file(./env.yml):facebookpageaccesstoken}
+      DEFAULT_LANG: ${file(./env.yml):defaultlang}
+      FRONTEND_CARD_PATH: ${file(./env.yml):frontendcardpath}
+      FRONTEND_MAP_PATH: ${file(./env.yml):frontendmappath}
+      SERVER_API_KEY: ${file(./env.yml):serverapikey}
+      SERVER_PATH: ${file(./env.yml):serverpath}
     events:
       - sns: Facebook
   telegramWebhook: # Lambda that gets triggered when user starts a conversation with Telegram bot
     handler: handler.telegramWebhook
+    environment:
+      TELEGRAM_BOTTOKEN: ${file(./env.yml):telegrambottoken}
+      DEFAULT_LANG: ${file(./env.yml):defaultlang}
+      FRONTEND_CARD_PATH: ${file(./env.yml):frontendcardpath}
+      FRONTEND_MAP_PATH: ${file(./env.yml):frontendmappath}
+      SERVER_API_KEY: ${file(./env.yml):serverapikey}
+      SERVER_PATH: ${file(./env.yml):serverpath}
     events:
       - http:
           path: telegram/webhook
@@ -55,9 +64,26 @@ functions:
           integration: lambda
   telegramReply: # Lambda that gets triggered when a message is published to the SNS topic Telegram
     handler: handler.telegramReply
+    environment:
+      TELEGRAM_BOTTOKEN: ${file(./env.yml):telegrambottoken}
+      DEFAULT_LANG: ${file(./env.yml):defaultlang}
+      FRONTEND_CARD_PATH: ${file(./env.yml):frontendcardpath}
+      FRONTEND_MAP_PATH: ${file(./env.yml):frontendmappath}
+      SERVER_API_KEY: ${file(./env.yml):serverapikey}
+      SERVER_PATH: ${file(./env.yml):serverpath}
     events:
       - sns: Telegram
   twitterReply: # Lambda that gets triggered when a message is published to the SNS topic Twitter
     handler: handler.twitterReply
+    environment:
+      TWITTER_CONSUMER_KEY: ${file(./env.yml):twitterconsumerkey}
+      TWITTER_CONSUMER_SECRET: ${file(./env.yml):twitterconsumersecret}
+      TWITTER_ACCESS_TOKEN_KEY: ${file(./env.yml):twitteraccesstokenkey}
+      TWITTER_ACCESS_TOKEN_SECRET: ${file(./env.yml):twitteraccesstokensecret}
+      DEFAULT_LANG: ${file(./env.yml):defaultlang}
+      FRONTEND_CARD_PATH: ${file(./env.yml):frontendcardpath}
+      FRONTEND_MAP_PATH: ${file(./env.yml):frontendmappath}
+      SERVER_API_KEY: ${file(./env.yml):serverapikey}
+      SERVER_PATH: ${file(./env.yml):serverpath}
     events:
       - sns: Twitter
