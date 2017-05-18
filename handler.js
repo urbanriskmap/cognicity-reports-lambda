@@ -17,7 +17,7 @@ const options = {
   host: process.env.SERVER_PATH,
   path: '/cards',
   method: 'POST',
-  port: 80,
+  port: process.env.SERVER_PORT,
   headers: {
     'x-api-key': process.env.SERVER_API_KEY,
     'Content-Type': 'application/json'
@@ -68,6 +68,8 @@ function getCardLink(username, network, language, callback) {
     "language": language
   }
 
+  console.log(options);
+  console.log(card_request);
   // Get a card from Cognicity server
   request({
     url: options.host + options.path,
@@ -274,9 +276,13 @@ module.exports.facebookReply = (event, context, callback) => {
 
 // Webhook handler - This is the method called by Telegram when user sends a message
 module.exports.telegramWebhook = (event, context, callback) => {
-  if (event.message && event.message.text && (event.message.text == "/flood" || event.message.text == "/prep")) {
+  console.log(event);
+  console.log("was event");
+  console.log(context);
+  console.log("was context");
+  if (event.body.message && event.body.message.text && (event.body.message.text === "/flood" || event.message.text === "/prep")) {
     // Form JSON request body
-    var chatID = event.message.chat.id;
+    var chatID = event.body.message.chat.id;
     console.log('Received flood report request via Telegram from: ' + chatID);
 
     var language = process.env.DEFAULT_LANG;
@@ -285,8 +291,9 @@ module.exports.telegramWebhook = (event, context, callback) => {
         console.log(error);
         callback(error, null);
       } else {
-        var disasterType = (event.message.text.includes('flood') ? 'flood' : 'prep');
+        var disasterType = (event.body.message.text.includes('flood') ? 'flood' : 'prep');
         var messageText = getInitialMessageText(language, cardId, disasterType);
+
         sendTelegramMessage(messageText, chatID);
         var response = {
             statusCode: 200,

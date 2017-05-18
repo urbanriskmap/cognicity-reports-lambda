@@ -27,6 +27,7 @@ functions:
       FRONTEND_MAP_PATH: ${file(./env.yml):frontendmappath}
       SERVER_API_KEY: ${file(./env.yml):serverapikey}
       SERVER_PATH: ${file(./env.yml):serverpath}
+      SERVER_PORT: ${file(./env.yml):serverport}
     events:
       - http:
           path: facebook/webhook
@@ -46,6 +47,7 @@ functions:
       FRONTEND_MAP_PATH: ${file(./env.yml):frontendmappath}
       SERVER_API_KEY: ${file(./env.yml):serverapikey}
       SERVER_PATH: ${file(./env.yml):serverpath}
+      SERVER_PORT: ${file(./env.yml):serverport}
     events:
       - sns: Facebook
   telegramWebhook: # Lambda that gets triggered when user starts a conversation with Telegram bot
@@ -57,6 +59,7 @@ functions:
       FRONTEND_MAP_PATH: ${file(./env.yml):frontendmappath}
       SERVER_API_KEY: ${file(./env.yml):serverapikey}
       SERVER_PATH: ${file(./env.yml):serverpath}
+      SERVER_PORT: ${file(./env.yml):serverport}
     events:
       - http:
           path: telegram/webhook
@@ -71,6 +74,7 @@ functions:
       FRONTEND_MAP_PATH: ${file(./env.yml):frontendmappath}
       SERVER_API_KEY: ${file(./env.yml):serverapikey}
       SERVER_PATH: ${file(./env.yml):serverpath}
+      SERVER_PORT: ${file(./env.yml):serverport}
     events:
       - sns: Telegram
   twitterReply: # Lambda that gets triggered when a message is published to the SNS topic Twitter
@@ -85,5 +89,6 @@ functions:
       FRONTEND_MAP_PATH: ${file(./env.yml):frontendmappath}
       SERVER_API_KEY: ${file(./env.yml):serverapikey}
       SERVER_PATH: ${file(./env.yml):serverpath}
+      SERVER_PORT: ${file(./env.yml):serverport}
     events:
       - sns: Twitter

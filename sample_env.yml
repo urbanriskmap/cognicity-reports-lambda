@@ -9,5 +9,6 @@ defaultlang: "en"
 frontendcardpath: "front end cards url (don't end the url with a /)"
 frontendmappath: "front end map url (don't end the url with a /)"
 serverapikey: "cognicity server api key"
-serverpath: "cognicity server path"
+serverpath: "cognicity server path (don't end the url with a /)"
+serverport: 443 
 area: "India"
