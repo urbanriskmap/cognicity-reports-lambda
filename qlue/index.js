@@ -1,7 +1,7 @@
 'use strict';
 //Lambda function
 
-require('dotenv').config() // Config
+require('dotenv').config() ;// Config
 
 var cities = process.env.CITIES.split(".");
 var QlueLambda = require('./QlueLambda');
@@ -15,4 +15,4 @@ exports.handler = function(event, context){
       console.log(cities[i]+': ', err, message, 'remaining time',context.getRemainingTimeInMillis());
     });
   }
-}
+};

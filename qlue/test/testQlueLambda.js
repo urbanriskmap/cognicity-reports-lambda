@@ -11,18 +11,18 @@ describe('QlueLambda', function(done){
   before(function(done){
 
     qlue.poll('city', function(err, data){
-      x = 4
+      x = 4;
       if (err !== null){
         x = null;
       }
-      console.log(x)
+      console.log(x);
       done();
-    })
+    });
   });
 
   it('Test poll', function(done){
     //this.timeout(5000);
-    test.value(x).is(4)
+    test.value(x).is(4);
     done();
   });
 });
