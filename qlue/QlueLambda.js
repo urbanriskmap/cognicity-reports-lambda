@@ -3,11 +3,11 @@
 // QlueLambda class
 var QlueLambda = function functionQlueLambda(){
 
-  require('dotenv').config() // Config
+  require('dotenv').config() ;// Config
   this.http = require('http');
   this.https = require('https');
 
-}
+};
 
 // Methods
 QlueLambda.prototype = {
@@ -168,6 +168,6 @@ QlueLambda.prototype = {
 
   },
 
-}
+};
 
 module.exports = QlueLambda;

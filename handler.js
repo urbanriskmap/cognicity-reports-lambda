@@ -22,7 +22,7 @@ const options = {
     'x-api-key': process.env.SERVER_API_KEY,
     'Content-Type': 'application/json'
   }
-}
+};
 
 // GRASP operating regions
 const instance_regions = {
@@ -30,19 +30,19 @@ const instance_regions = {
   jbd: 'jakarta',
   sby: 'surabaya',
   bdg: 'bandung'
-}
+};
 
 // Replies to user
 const replies = {
   'en': 'Hi! Report using this link, thanks.',
   'id': 'Hi! Laporkan menggunakan link ini. Terima kasih.'
-}
+};
 
 // Confirmation message to user
 const confirmations = {
   'en': "Hi! Thanks for your report. I've put it on the map.",
   'id': 'Hi! Terima kasih atas laporan Anda. Aku sudah menaruhnya di peta.'
-}
+};
 
 /*
  * Construct the initial message to be sent to the user
@@ -66,7 +66,7 @@ function getCardLink(username, network, language, callback) {
     "username": username,
     "network": network,
     "language": language
-  }
+  };
 
   console.log(options);
   console.log(card_request);
@@ -159,7 +159,7 @@ function sendTweet(messageText, userName) {
     })
     .catch(function (error) {
       console.error('Sending report link tweet failed', error);
-    })
+    });
 }
 
 // Webhook handler - This is the method called by Facebook when you verify webhooks for the app
