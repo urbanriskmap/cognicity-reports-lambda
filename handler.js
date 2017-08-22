@@ -48,7 +48,7 @@ const confirmations = {
  * Construct the initial message to be sent to the user
  */
 function getInitialMessageText(language, cardId, disasterType) {
-  return replies[language] + "\n" + process.env.FRONTEND_CARD_PATH + "/" + disasterType + "/" + cardId + "/report";
+  return replies[language] + "\n" + process.env.FRONTEND_CARD_PATH + "/" + disasterType + "/" + cardId;
 }
 
 /*
