@@ -153,7 +153,7 @@ function sendTelegramMessage(messageData, senderID) {
  * Makes POST call to post a Twitter status update @ the user's handle
  */
 function sendTweet(messageText, userName) {
-  twitterClient.post('direct_messages/update', {status: messageText})
+  twitterClient.post('statuses/update', {status: messageText})
     .then(function (tweet) {
       console.log('Tweet sent: ' + tweet + 'to the user: ' + userName);
     })
