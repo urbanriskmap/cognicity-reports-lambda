@@ -32,6 +32,12 @@ const instance_regions = {
   bdg: 'bandung'
 };
 
+// Welcome message to user (telegram)
+const initiate = {
+  'en': 'Welcome! Type in /flood to request a card link',
+  'id': 'Selamat datang! ketik /banjir untuk meminta link kartu'
+}
+
 // Replies to user
 const replies = {
   'en': 'Hi! Report using this link, thanks.',
@@ -280,30 +286,34 @@ module.exports.telegramWebhook = (event, context, callback) => {
   console.log("was event");
   console.log(context);
   console.log("was context");
-  if (event.body.message && event.body.message.text && (event.body.message.text === "/flood" || event.body.message.text === "/prep")) {
-    // Form JSON request body
+  if (event.body.message && event.body.message.text) {
     var chatID = event.body.message.chat.id;
-    console.log('Received flood report request via Telegram from: ' + chatID);
+    if (event.body.message.text === "/start") {
+      var startMessage = initiate[process.env.DEFAULT_LANG];
+      sendTelegramMessage(startMessage, chatID);
+    } else if (event.body.message.text === "/flood" || event.body.message.text === "/prep") {
+      console.log('Received flood report request via Telegram from: ' + chatID);
+      // Form JSON request body
+      var language = process.env.DEFAULT_LANG;
+      getCardLink (chatID.toString(), "telegram", language, function(error, cardId) {
+        if(error) {
+          console.log(error);
+          callback(error, null);
+        } else {
+          var disasterType = (event.body.message.text.includes('flood') ? 'flood' : 'prep');
+          var messageText = getInitialMessageText(language, cardId, disasterType);
 
-    var language = process.env.DEFAULT_LANG;
-    getCardLink (chatID.toString(), "telegram", language, function(error, cardId) {
-      if(error) {
-        console.log(error);
-        callback(error, null);
-      } else {
-        var disasterType = (event.body.message.text.includes('flood') ? 'flood' : 'prep');
-        var messageText = getInitialMessageText(language, cardId, disasterType);
-
-        sendTelegramMessage(messageText, chatID);
-        var response = {
-            statusCode: 200,
-            headers: {},
-            body: JSON.stringify({})
-        };
-        console.log('Sending success API Gateway response');
-        callback(null, response); // Send success code with empty json to avoid duplicate POST calls
-      }
-    });
+          sendTelegramMessage(messageText, chatID);
+          var response = {
+              statusCode: 200,
+              headers: {},
+              body: JSON.stringify({})
+          };
+          console.log('Sending success API Gateway response');
+          callback(null, response); // Send success code with empty json to avoid duplicate POST calls
+        }
+      });
+    }
   }
 };
 
