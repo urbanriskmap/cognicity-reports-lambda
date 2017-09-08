@@ -9,7 +9,7 @@ provider:
   stage: prod
   region: us-west-2
   stackTags:
-    area: ${env:area}
+    area: ${file(./env.yml):area}
 
 # You can overwrite defaults by adding the following
 #  stage: dev
@@ -20,14 +20,14 @@ functions:
   facebookWebhook: # Lambda that gets triggered when user starts a conversation with Facebook Messenger bot
     handler: handler.facebookWebhook
     environment:
-      FACEBOOK_VALIDATION_TOKEN: ${env:facebookvalidationtoken}
-      FACEBOOK_PAGE_ACCESS_TOKEN: ${env:facebookpageaccesstoken}
-      DEFAULT_LANG: ${env:defaultlang}
-      FRONTEND_CARD_PATH: ${env:frontendcardpath}
-      FRONTEND_MAP_PATH: ${env:frontendmappath}
-      SERVER_API_KEY: ${env:serverapikey}
-      SERVER_PATH: ${env:serverpath}
-      SERVER_PORT: ${env:serverport}
+      FACEBOOK_VALIDATION_TOKEN: ${file(./env.yml):facebookvalidationtoken}
+      FACEBOOK_PAGE_ACCESS_TOKEN: ${file(./env.yml):facebookpageaccesstoken}
+      DEFAULT_LANG: ${file(./env.yml):defaultlang}
+      FRONTEND_CARD_PATH: ${file(./env.yml):frontendcardpath}
+      FRONTEND_MAP_PATH: ${file(./env.yml):frontendmappath}
+      SERVER_API_KEY: ${file(./env.yml):serverapikey}
+      SERVER_PATH: ${file(./env.yml):serverpath}
+      SERVER_PORT: ${file(./env.yml):serverport}
     events:
       - http:
           path: facebook/webhook
@@ -40,26 +40,26 @@ functions:
   facebookReply: # Lambda that gets triggered when a message is published to the SNS topic Facebook
     handler: handler.facebookReply
     environment:
-      FACEBOOK_VALIDATION_TOKEN: ${env:facebookvalidationtoken}
-      FACEBOOK_PAGE_ACCESS_TOKEN: ${env:facebookpageaccesstoken}
-      DEFAULT_LANG: ${env:defaultlang}
-      FRONTEND_CARD_PATH: ${env:frontendcardpath}
-      FRONTEND_MAP_PATH: ${env:frontendmappath}
-      SERVER_API_KEY: ${env:serverapikey}
-      SERVER_PATH: ${env:serverpath}
-      SERVER_PORT: ${env:serverport}
+      FACEBOOK_VALIDATION_TOKEN: ${file(./env.yml):facebookvalidationtoken}
+      FACEBOOK_PAGE_ACCESS_TOKEN: ${file(./env.yml):facebookpageaccesstoken}
+      DEFAULT_LANG: ${file(./env.yml):defaultlang}
+      FRONTEND_CARD_PATH: ${file(./env.yml):frontendcardpath}
+      FRONTEND_MAP_PATH: ${file(./env.yml):frontendmappath}
+      SERVER_API_KEY: ${file(./env.yml):serverapikey}
+      SERVER_PATH: ${file(./env.yml):serverpath}
+      SERVER_PORT: ${file(./env.yml):serverport}
     events:
       - sns: Facebook
   telegramWebhook: # Lambda that gets triggered when user starts a conversation with Telegram bot
     handler: handler.telegramWebhook
     environment:
-      TELEGRAM_BOTTOKEN: ${env:telegrambottoken}
-      DEFAULT_LANG: ${env:defaultlang}
-      FRONTEND_CARD_PATH: ${env:frontendcardpath}
-      FRONTEND_MAP_PATH: ${env:frontendmappath}
-      SERVER_API_KEY: ${env:serverapikey}
-      SERVER_PATH: ${env:serverpath}
-      SERVER_PORT: ${env:serverport}
+      TELEGRAM_BOTTOKEN: ${file(./env.yml):telegrambottoken}
+      DEFAULT_LANG: ${file(./env.yml):defaultlang}
+      FRONTEND_CARD_PATH: ${file(./env.yml):frontendcardpath}
+      FRONTEND_MAP_PATH: ${file(./env.yml):frontendmappath}
+      SERVER_API_KEY: ${file(./env.yml):serverapikey}
+      SERVER_PATH: ${file(./env.yml):serverpath}
+      SERVER_PORT: ${file(./env.yml):serverport}
     events:
       - http:
           path: telegram/webhook
@@ -68,12 +68,12 @@ functions:
   telegramReply: # Lambda that gets triggered when a message is published to the SNS topic Telegram
     handler: handler.telegramReply
     environment:
-      TELEGRAM_BOTTOKEN: ${env:telegrambottoken}
-      DEFAULT_LANG: ${env:defaultlang}
-      FRONTEND_CARD_PATH: ${env:frontendcardpath}
-      FRONTEND_MAP_PATH: ${env:frontendmappath}
-      SERVER_API_KEY: ${env:serverapikey}
-      SERVER_PATH: ${env:serverpath}
-      SERVER_PORT: ${env:serverport}
+      TELEGRAM_BOTTOKEN: ${file(./env.yml):telegrambottoken}
+      DEFAULT_LANG: ${file(./env.yml):defaultlang}
+      FRONTEND_CARD_PATH: ${file(./env.yml):frontendcardpath}
+      FRONTEND_MAP_PATH: ${file(./env.yml):frontendmappath}
+      SERVER_API_KEY: ${file(./env.yml):serverapikey}
+      SERVER_PATH: ${file(./env.yml):serverpath}
+      SERVER_PORT: ${file(./env.yml):serverport}
     events:
       - sns: Telegram
