@@ -253,6 +253,16 @@ module.exports.facebookWebhook = (event, context, callback) => {
                 sendFacebookMessage(payload);
               }
             });
+          } else { // always reply with a default message
+            const payload = {
+              recipient: {
+                id: messagingItem.sender.id
+              },
+              message: {
+                text: "RiskMap bot helps you report flooding in realtime. Send /flood to report. In life-threatening situations always call 911."
+              }
+            };
+            sendFacebookMessage(payload);
           }
         }
       });
