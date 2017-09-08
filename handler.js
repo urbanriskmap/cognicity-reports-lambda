@@ -184,8 +184,7 @@ module.exports.facebookWebhook = (event, context, callback) => {
     event.body.entry.map((entry) => {
       entry.messaging.map((messagingItem) => {
         if (messagingItem.message && messagingItem.message.text && //Code can be removed after updating Petabencana bot because we want to use only menu based communication
-          (messagingItem.message.text.toLowerCase().includes('banjir') ||
-            messagingItem.message.text.toLowerCase().includes('flood'))) {
+            messagingItem.message.text.toLowerCase().includes('flood')) {
           // Form JSON request body
           var language = process.env.DEFAULT_LANG;
           if (messagingItem.message.text.toLowerCase().includes('flood')) {
@@ -236,7 +235,7 @@ module.exports.facebookWebhook = (event, context, callback) => {
               }
             };
             sendFacebookMessage(payload);
-          } else if (messagingItem.postback.payload === "flood" || messagingItem.postback.payload === "prep") {
+          } else if (messagingItem.postback.payload === "flood") {
             var language = process.env.DEFAULT_LANG;
             getCardLink (messagingItem.sender.id.toString(), "facebook", language, function(error, cardId) {
               if(error) {
@@ -254,6 +253,16 @@ module.exports.facebookWebhook = (event, context, callback) => {
                 sendFacebookMessage(payload);
               }
             });
+          } else { // always reply with a default message
+            const payload = {
+              recipient: {
+                id: messagingItem.sender.id
+              },
+              message: {
+                text: "RiskMap bot helps you report flooding in realtime. Send /flood to report. In life-threatening situations always call 911."
+              }
+            };
+            sendFacebookMessage(payload);
           }
         }
       });
