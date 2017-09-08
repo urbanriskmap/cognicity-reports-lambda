@@ -1,13 +1,13 @@
-service: riskmapbot
+service: riskmapUsBot
 
 custom:
-  projectName: riskmapbot
+  projectName: riskmapUsBot
 
 provider:
   name: aws
   runtime: nodejs6.10
-  stage: dev
-  region: ap-south-1
+  stage: prod
+  region: us-west-2
   stackTags:
     area: ${file(./env.yml):area}
 
@@ -77,18 +77,3 @@ functions:
       SERVER_PORT: ${file(./env.yml):serverport}
     events:
       - sns: Telegram
-  twitterReply: # Lambda that gets triggered when a message is published to the SNS topic Twitter
-    handler: handler.twitterReply
-    environment:
-      TWITTER_CONSUMER_KEY: ${file(./env.yml):twitterconsumerkey}
-      TWITTER_CONSUMER_SECRET: ${file(./env.yml):twitterconsumersecret}
-      TWITTER_ACCESS_TOKEN_KEY: ${file(./env.yml):twitteraccesstokenkey}
-      TWITTER_ACCESS_TOKEN_SECRET: ${file(./env.yml):twitteraccesstokensecret}
-      DEFAULT_LANG: ${file(./env.yml):defaultlang}
-      FRONTEND_CARD_PATH: ${file(./env.yml):frontendcardpath}
-      FRONTEND_MAP_PATH: ${file(./env.yml):frontendmappath}
-      SERVER_API_KEY: ${file(./env.yml):serverapikey}
-      SERVER_PATH: ${file(./env.yml):serverpath}
-      SERVER_PORT: ${file(./env.yml):serverport}
-    events:
-      - sns: Twitter
