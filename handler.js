@@ -218,7 +218,7 @@ module.exports.facebookWebhook = (event, context, callback) => {
               }
             };
             sendFacebookMessage(payload);
-          } else if (messagingItem.postback.payload === "flood") {
+          } else if (messagingItem.postback.payload === "/flood") {
             var language = process.env.DEFAULT_LANG;
             getCardLink (messagingItem.sender.id.toString(), "facebook", language, function(error, cardId) {
               if(error) {
