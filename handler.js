@@ -209,29 +209,12 @@ module.exports.facebookWebhook = (event, context, callback) => {
           });
         } else if (messagingItem.postback && messagingItem.postback.payload) {
           if (messagingItem.postback.payload === "GET_STARTED_PAYLOAD") {
-            var payload = {
+            const payload = {
               recipient: {
                 id: messagingItem.sender.id
               },
               message: {
-                attachment: {
-                  type: "template",
-                  payload: {
-                    template_type: "button",
-                    text: "Please select one of the below options to get one-time link for reporting",
-                    buttons: [{
-                        "type": "postback",
-                        "title": "Report flood",
-                        "payload": "flood"
-                      },
-                      {
-                        "type": "postback",
-                        "title": "Monsoon preparations",
-                        "payload": "prep"
-                      }
-                    ]
-                  }
-                }
+                text: "RiskMap bot helps you report flooding in realtime. Send /flood to report. In life-threatening situations always call 911."
               }
             };
             sendFacebookMessage(payload);
