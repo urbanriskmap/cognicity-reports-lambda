@@ -57,6 +57,15 @@ Save a copy of sample_env.yml as env.yml in local directory with appropriate cre
 * `serverapikey`: API Key needed to make calls to the deployed server (Set it to "" during local testing)
 * `serverpath`: Cognicity server URL to fetch unique cardIds
 
+### Encrypted deployment through travis-ci
+Deployment from one branch to several different region is facilitated through encryption of .env files
+
+* set the key and injection vector environment variables:
+* currently they are `fb_telegram_param_key` and `fb_telegram_param_iv`.
+* Then you can run ./encrypt.sh to encrypt region.env.yml into region.env.yml.enc.
+* Running ./decrypt.sh will turn region.env.yml.enc into plain text region.env.yml
+* In order to create new key/iv pair use the -p flag as described [here](https://security.stackexchange.com/questions/29106/openssl-recover-key-and-iv-by-passphrase/29139)
+
 #### Misc Notes
 - AWS credentials are stored in bash_profile
 - Grasp "username" is userID/senderID from source networks to allow replies in conversation
