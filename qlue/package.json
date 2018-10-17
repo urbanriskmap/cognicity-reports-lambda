@@ -13,10 +13,10 @@
   "author": "Tomas Holderness",
   "license": "GPL-3.0",
   "devDependencies": {
-    "mocha": "^3.2.0",
+    "mocha": "^5.2.0",
     "unit.js": "^2.0.0"
   },
   "dependencies": {
-    "dotenv": "^2.0.0"
+    "dotenv": "^6.1.0"
   }
 }
