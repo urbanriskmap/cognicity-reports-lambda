@@ -1,0 +1,5 @@
+functions:
+  zurich:
+    handler: zurich.handler
+    events:
+      - schedule: rate(5 minutes)

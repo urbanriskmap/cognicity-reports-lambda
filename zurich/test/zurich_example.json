@@ -1,0 +1,227 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          "106.85830626637",
+          "-6.3756510510227"
+        ]
+      },
+      "properties": {
+        "pkey": 623,
+        "created_at": "2017-02-22T11:33:24+07:00",
+        "source": "zears",
+        "status": "confirmed",
+        "url": null,
+        "image_url": "https://zurichalert.co.id/app/webroot/files/incidents/249/58a7c4d1-b31c-4d37-a870-5f6dac1f1df6/original.png",
+        "title": "West Java",
+        "category": "Kebakaran",
+        "text": "Jalan Taman Duta Barat Blok D1 No.9 Cisalak, Sukmajaya, Kota Depok, Jawa Barat 16416"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          "106.94577008486",
+          "-6.2787986408586"
+        ]
+      },
+      "properties": {
+        "pkey": 689,
+        "created_at": "2017-02-22T09:16:50+07:00",
+        "source": "zears",
+        "status": "confirmed",
+        "url": null,
+        "image_url": "https://zurichalert.co.id/app/webroot/files/incidents/508/58ab9e41-833c-4d05-884d-2043ac1f1df6/original.png",
+        "title": "West Java",
+        "category": "Banjir",
+        "text": "Jalan Kalimaya V Blok C02 No.12 Jatikramat, Jatiasih, Kota Bekasi, Jawa Barat 17421",
+        "radius": "500 m",
+        "depth": "30 cm - 60 cm"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          "106.81163046509",
+          "-6.2556408768399"
+        ]
+      },
+      "properties": {
+        "pkey": 672,
+        "created_at": "2017-02-22T09:17:17+07:00",
+        "source": "zears",
+        "status": "confirmed",
+        "url": null,
+        "image_url": "https://zurichalert.co.id/app/webroot/files/incidents/497/58ab8e65-638c-44f8-be21-1c7fac1f1df6/original.jpg",
+        "title": "Mampang Prapatan",
+        "category": "Banjir",
+        "text": "Jl. Kemang I, Bangka, Mampang Prpt., Kota Jakarta Selatan, DKI Jakarta 12730, Indonesia",
+        "radius": "300 m",
+        "depth": "30 cm - 60 cm"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          "106.76751215011",
+          "-6.1592758613137"
+        ]
+      },
+      "properties": {
+        "pkey": 667,
+        "created_at": "2017-02-22T09:18:47+07:00",
+        "source": "zears",
+        "status": "confirmed",
+        "url": null,
+        "image_url": "https://zurichalert.co.id/app/webroot/files/incidents/67/58ab85ae-c43c-4e55-87be-1688ac1f1df6/original.jpg",
+        "title": "Kebon Jeruk",
+        "category": "Banjir",
+        "text": "Asrama Polri Pesing, Kedoya Utara, Kb. Jeruk, Kota Jakarta Barat, DKI Jakarta 11520, Indonesia",
+        "radius": "200 m",
+        "depth": "< 30 cm"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          "106.9093",
+          "-6.2528204"
+        ]
+      },
+      "properties": {
+        "pkey": 703,
+        "created_at": "2017-02-22T09:39:20+07:00",
+        "source": "zears",
+        "status": "confirmed",
+        "url": null,
+        "image_url": "http://php.dantepariwara.com/zurich-zears/app/webroot/files/incidents/1/58acf96d-1814-4453-869f-034f922c3848/original.jpg",
+        "title": "Cipinang Melayu",
+        "category": "Banjir",
+        "text": "Cipinang Melayu Cipinang Melayu, Makasar, East Jakarta City, Jakarta, Indonesia",
+        "radius": "500 m",
+        "depth": "> 100 cm"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          "106.8488128",
+          "-6.2203167"
+        ]
+      },
+      "properties": {
+        "pkey": 704,
+        "created_at": "2017-02-22T10:44:38+07:00",
+        "source": "zears",
+        "status": "confirmed",
+        "url": null,
+        "image_url": null,
+        "title": "South Manggarai",
+        "category": "Banjir",
+        "text": "South Manggarai South Manggarai, Tebet, South Jakarta City, Jakarta, Indonesia",
+        "radius": "200 m",
+        "depth": "< 30 cm"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          "106.79099",
+          "-6.115756"
+        ]
+      },
+      "properties": {
+        "pkey": 705,
+        "created_at": "2017-02-22T10:45:14+07:00",
+        "source": "zears",
+        "status": "confirmed",
+        "url": null,
+        "image_url": null,
+        "title": "Pluit",
+        "category": "Banjir",
+        "text": "Pluit RT.15/RW.4, Pluit, Penjaringan, Kota Jkt Utara, DKI Jakarta 14450, Indonesia",
+        "radius": "500 m",
+        "depth": "> 100 cm"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          "106.9151629",
+          "-6.1178245"
+        ]
+      },
+      "properties": {
+        "pkey": 706,
+        "created_at": "2017-02-22T10:47:18+07:00",
+        "source": "zears",
+        "status": "confirmed",
+        "url": null,
+        "image_url": null,
+        "title": "Lagoa",
+        "category": "Kebakaran",
+        "text": "Jalan Cemara Blok-i Gang IV Jl. Cemara Blok-i Gg. IV, Lagoa, Koja, Kota Jkt Utara, DKI Jakarta 14270, Indonesia"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          "106.821441650391",
+          "-6.19482712504835"
+        ]
+      },
+      "properties": {
+        "pkey": 707,
+        "created_at": "2017-02-22T10:48:52+07:00",
+        "source": "zears",
+        "status": "confirmed",
+        "url": null,
+        "image_url": null,
+        "title": "10310",
+        "category": "PMI",
+        "text": "Hotel Indonesia, Kota Jakarta Pusat, DKI Jakarta 10310, Indonesia"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          "106.785221099854",
+          "-6.19260855343243"
+        ]
+      },
+      "properties": {
+        "pkey": 708,
+        "created_at": "2017-02-22T10:49:28+07:00",
+        "source": "zears",
+        "status": "confirmed",
+        "url": null,
+        "image_url": null,
+        "title": "Kemanggisan",
+        "category": "Listrik Mati",
+        "text": "Jl. Kemanggisan Raya No.9A, Kemanggisan, Palmerah, Kota Jakarta Barat, DKI Jakarta 11480, Indonesia"
+      }
+    }
+  ]
+}
